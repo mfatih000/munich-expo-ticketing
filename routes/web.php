@@ -4,11 +4,11 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\TicketController;
 
 
-Route::get('/', function () {
-    return view('welcome');
-});
+// Route::get('/', function () {
+//     return view('welcome');
+// });
 
-Route::get('/register', [TicketController::class, 'create'])->name('ticket.create');
+Route::get('/', [TicketController::class, 'create'])->name('ticket.create');
 Route::post('/register', [TicketController::class, 'store'])->name('ticket.store');
 Route::get('/thank-you/{id}', function ($id) {
     $ticket = \App\Models\Ticket::findOrFail($id);
