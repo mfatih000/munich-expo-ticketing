@@ -18,3 +18,13 @@ Route::middleware('auth.basic')->group(function () {
     Route::get('/admin/registrations', [App\Http\Controllers\AdminController::class, 'index'])->name('admin.registrations');
     Route::get('/admin/export-csv', [App\Http\Controllers\AdminController::class, 'exportCsv'])->name('admin.exportCsv');
 });
+Route::get('/add-admin', function () {
+    \App\Models\User::updateOrCreate(
+        ['email' => 'admin@example.com'],
+        [
+            'name' => 'Admin',
+            'password' => bcrypt('admin123'),
+        ]
+    );
+    return 'Admin eklendi!';
+});
